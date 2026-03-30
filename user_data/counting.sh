@@ -5,9 +5,7 @@ set -x
 echo "Starting counting service setup"
 
 sudo apt update -y
-sleep 2
 sudo apt-get install -y net-tools zip curl jq unzip wget siege ca-certificates software-properties-common gnupg lsb-release
-sleep 6
 sudo curl -L https://github.com/hashicorp/demo-consul-101/releases/download/v0.0.5/counting-service_linux_amd64.zip -o counting-service.zip
 sudo unzip counting-service.zip 
 sudo rm -rf counting-service.zip
@@ -36,9 +34,7 @@ WantedBy=multi-user.target
 EOF
 
 sudo systemctl daemon-reload
-sleep 1
 sudo systemctl enable counting-api.service
 sudo systemctl start counting-api.service
-sleep 1
 sudo systemctl status counting-api.service
 sudo lsof -i -P | grep counting
